@@ -1,5 +1,6 @@
 import { Stethoscope, Search, Eye } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const pemeriksaanData = [
 	{
@@ -141,8 +142,8 @@ export default function PemeriksaanBalita() {
 										</span>
 									</td>
 									<td className="px-4 py-3 text-center">
-										<button className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
-											<Eye className="h-4 w-4" />
+										<button className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors" >
+											<Link to={`/data-balita/${p.id}`}><Eye className="h-4 w-4" /></Link>
 										</button>
 									</td>
 								</tr>
