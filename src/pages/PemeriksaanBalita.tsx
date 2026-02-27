@@ -1,6 +1,7 @@
 import { Stethoscope, Search, Eye } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import DataPagination from "@/components/DataPagination";
+import { usePagination } from "@/hooks/use-pagination";
 
 const pemeriksaanData = [
 	{
@@ -67,6 +68,9 @@ export default function PemeriksaanBalita() {
 		p.namaBalita.toLowerCase().includes(search.toLowerCase()),
 	);
 
+	const { page, setPage, limit, total, totalPages, paginatedData } =
+		usePagination(filtered);
+
 	return (
 		<div className="space-y-6">
 			<div>
@@ -115,7 +119,7 @@ export default function PemeriksaanBalita() {
 							</tr>
 						</thead>
 						<tbody>
-							{filtered.map((p) => (
+							{paginatedData.map((p) => (
 								<tr
 									key={p.id}
 									className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors">
@@ -142,8 +146,8 @@ export default function PemeriksaanBalita() {
 										</span>
 									</td>
 									<td className="px-4 py-3 text-center">
-										<button className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors" >
-											<Link to={`/data-balita/${p.id}`}><Eye className="h-4 w-4" /></Link>
+										<button className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+											<Eye className="h-4 w-4" />
 										</button>
 									</td>
 								</tr>
@@ -152,6 +156,14 @@ export default function PemeriksaanBalita() {
 					</table>
 				</div>
 			</div>
+
+			<DataPagination
+				page={page}
+				totalPages={totalPages}
+				total={total}
+				limit={limit}
+				onPageChange={setPage}
+			/>
 		</div>
 	);
 }
