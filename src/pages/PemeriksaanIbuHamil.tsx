@@ -1,7 +1,9 @@
-import { Search, Eye } from "lucide-react";
+import { Search, Eye, Link } from "lucide-react";
 import { useState } from "react";
 import DataPagination from "@/components/DataPagination";
 import { usePagination } from "@/hooks/use-pagination";
+import { b } from "vitest/dist/chunks/suite.d.FvehnV49.js";
+import { NavLink } from "react-router-dom";
 
 const pemeriksaanData = [
 	{
@@ -129,11 +131,11 @@ export default function PemeriksaanIbuHamil() {
 											{p.status}
 										</span>
 									</td>
-									<td className="px-4 py-3 text-center">
-										<button className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
-											<Eye className="h-4 w-4" />
-										</button>
-									</td>
+									<NavLink
+										to={`/data-ibu-hamil/${p.id}`}
+										className="rounded-lg p-1.5 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors">
+										<Eye className="h-4 w-4" />
+									</NavLink>
 								</tr>
 							))}
 						</tbody>
